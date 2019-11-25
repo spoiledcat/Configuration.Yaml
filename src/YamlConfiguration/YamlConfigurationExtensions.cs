@@ -67,7 +67,7 @@
                 throw new ArgumentException("Invalid File Path", nameof(path));
             }
 
-            if (provider == null && Path.IsPathRooted(path))
+            if (provider == null && Path.IsPathRooted(path) && (!optional || File.Exists(path)))
             {
                 provider = new PhysicalFileProvider(Path.GetDirectoryName(path));
                 path = Path.GetFileName(path);
